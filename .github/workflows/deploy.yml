@@ -2,7 +2,8 @@ name: Test and Release Django Project
 
 on:
   push:
-    branches: [ "development" ]
+    branches: 
+      - '**' 
 
 
 jobs:

@@ -29,6 +29,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'chats',
+    'home',
+    'reservations',
+    'reviews',
+    'rooms',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +81,7 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-     'NAME': 'django.contrib.auth.password_validation \
-     .UserAttributeSimilarityValidator',
+     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
      'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'
@@ -95,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Lagos'
 
 USE_I18N = True
 

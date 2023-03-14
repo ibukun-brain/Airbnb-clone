@@ -1,4 +1,4 @@
-name: Test-and-Release-Django-Project
+name: Test0and Release Django Project
 
 on:
   push:

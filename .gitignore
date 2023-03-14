@@ -10,6 +10,8 @@ local_settings.py
 *.sqlite3
 *.sqlite3-journal
 env.bat
+*yui0
+.db
 # assets/
 media/
 .vscode/

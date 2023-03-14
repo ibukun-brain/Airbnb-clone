@@ -2,7 +2,6 @@ import dj_database_url
 from .base_settings import *
 from airbnb.settings.local.mailhog_settings import *
 
-
 SECRET_KEY = 'django-insecure-w$*sk^mkhnj#t0hr-\
 !=yk7qb2gd1=wy@*_f_j4z2=9s3!h%p=a'
 
@@ -24,16 +23,17 @@ MIDDLEWARE += [
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
-# if not DEBUG:
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
 STATIC_URL = '/assets/'
 
-STATIC_ROOT = BASE_DIR / "assets"
+STATICFILES_DIRS = [
+    BASE_DIR / 'assets/'
+]
+
+STATIC_ROOT = BASE_DIR / "static_root"
 
 
 MEDIA_URL = "/media/"

@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'reservations',
     'reviews',
     'rooms',
+    'lists',
 
     # Third parties
     'django_countries',

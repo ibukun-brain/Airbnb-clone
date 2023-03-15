@@ -29,6 +29,7 @@ class PublishedStatus(models.TextChoices):
     Published = ("published", "Published")
 
 
-class EnrolledStatus(models.TextChoices):
+class ReservationStatus(models.TextChoices):
     Pending = ("pending", "Pending")
-    Enrolled = ("enrolled", "Enrolled")
+    Confirmed = ("confirmed", "Confirmed")
+    Canceled = ("canceled", "Canceled")

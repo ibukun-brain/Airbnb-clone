@@ -1,6 +1,7 @@
 from django.contrib import admin
 from lists.models import List
 
+
 @admin.register(List)
 class ListAdmin(admin.ModelAdmin):
     list_select_related = ['user']

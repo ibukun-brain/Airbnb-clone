@@ -11,7 +11,7 @@ local_settings.py
 *.sqlite3-journal
 env.bat
 *yui0
-.db
+*.db
 # assets/
 media/
 static_root/

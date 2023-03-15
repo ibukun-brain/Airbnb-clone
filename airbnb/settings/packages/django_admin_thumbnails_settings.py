@@ -4,3 +4,5 @@ ADMIN_THUMBNAIL_STYLE = {
     'height': 'auto',
     'border': '50%',
 }
+
+ADMIN_THUMBNAIL_DEFAULT_LABEL = 'Image'

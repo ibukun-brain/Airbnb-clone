@@ -20,6 +20,13 @@ class MediaHelper:
         return full_path
 
     @staticmethod
+    def room_photo_upload_path(instance, file_name):
+        path = f"{instance._meta.app_label}/{instance._meta.model_name}/"
+        user_image = f"{instance.room}/{file_name}"
+        full_path = path + user_image
+        return full_path
+
+    @staticmethod
     def _upload_path(model, filetype, filename):
         """
         function to generate upload path for media files to prevent duplicate

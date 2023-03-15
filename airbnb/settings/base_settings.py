@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-
+from airbnb.settings.packages.django_admin_thumbnails_settings import *
+from airbnb.settings.packages.ckeditor_settings import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,11 +31,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Airbnb apps
     'chats',
     'home',
     'reservations',
     'reviews',
     'rooms',
+
+    # Third parties
+    'django_countries',
+    'ckeditor',
+    # 'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [

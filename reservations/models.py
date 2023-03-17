@@ -1,5 +1,7 @@
 import auto_prefetch
+
 from django.db import models
+from django.utils import timezone
 
 from airbnb.utils.models import TimeBasedModel
 from airbnb.utils.choices import ReservationStatus
@@ -24,3 +26,15 @@ class Reservation(TimeBasedModel):
 
     def __str__(self):
         return f'{self.room} - {self.check_in}'
+
+    def in_progess(self):
+        now = timezone.now().date()
+        return self.check_in <= now < self.check_out
+
+    in_progess.boolean = True
+
+    def is_finished(self):
+        now = timezone.now().date()
+        return now > self.check_out
+
+    is_finished.boolean = True

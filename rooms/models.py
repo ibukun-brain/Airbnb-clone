@@ -1,4 +1,5 @@
 import auto_prefetch
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -21,7 +22,7 @@ class Room(NamedTimeBasedModel):
     address = models.CharField(_('address'), max_length=100)
     baths = models.PositiveSmallIntegerField(_('baths'), default=0)
     beds = models.PositiveSmallIntegerField(_('beds'), default=0)
-    bedroom = models.PositiveSmallIntegerField(_('bedrooms'), default=0)
+    bedrooms = models.PositiveSmallIntegerField(_('bedrooms'), default=0)
     guests = models.PositiveSmallIntegerField(_('guests'), default=0)
     check_in = models.TimeField(_('check_in'))
     check_out = models.TimeField(_('checkout'))
@@ -29,20 +30,38 @@ class Room(NamedTimeBasedModel):
     room_type = auto_prefetch.ForeignKey(
         'RoomType',
         verbose_name=_('room type'),
-        on_delete=models.CASCADE
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='rooms'
     )
     amenities = models.ManyToManyField(
         'Amenity',
-        blank=True
+        blank=True,
+        related_name='rooms'
     )
     facilities = models.ManyToManyField(
         'facility',
-        blank=True
+        blank=True,
+        related_name='rooms'
     )
     house_rules = models.ManyToManyField(
         'HouseRule',
-        blank=True
+        blank=True,
+        related_name='rooms'
     )
+
+    @property
+    def total_rating(self):
+        all_reviews = self.reviews.all()
+        all_ratings = 0
+        for review in all_reviews:
+            all_ratings += review.rating_average
+
+        return all_ratings / len(all_reviews)
+
+    def save(self, *args, **kwargs):
+        self.city = self.city.capitalize()
+        return super().save(*args, **kwargs)
 
 
 class RoomPhoto(TimeBasedModel):
@@ -50,9 +69,12 @@ class RoomPhoto(TimeBasedModel):
         'Room',
         verbose_name=_('room'),
         on_delete=models.CASCADE,
+        related_name="roomphotos"
     )
-    caption = models.CharField(_('caption'), max_length=100)
-    image = models.ImageField()
+    caption = models.CharField(_('caption'), max_length=100, blank=True)
+    image = models.ImageField(
+        upload_to=MediaHelper.room_photo_upload_path,
+     )
 
     class Meta:
         verbose_name = 'Room Photo'

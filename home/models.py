@@ -55,9 +55,8 @@ class CustomUser(TimeBasedModel, AbstractUser):
 
     class Meta(auto_prefetch.Model.Meta):
         ordering = ["first_name", "last_name"]
-        verbose_name = "user"
-        verbose_name = _('Custom User')
-        verbose_name_plural = _('Custom Users')
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 
     def __str__(self):
         return self.get_full_name() or self.email

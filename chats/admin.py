@@ -4,7 +4,10 @@ from chats.models import Chat, Message
 
 @admin.register(Chat)
 class ChatAdmin(admin.ModelAdmin):
-    list_display = ['created_at', 'updated_at']
+    list_display = [
+        'all_participants', 'created_at',
+        'count_messages', 'count_participants'
+    ]
     list_filter = ['created_at', 'updated_at']
     filter_horizontal = ['participants']
 

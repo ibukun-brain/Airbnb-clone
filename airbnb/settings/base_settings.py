@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+
+from airbnb.settings.packages.all_auth_settings import *
 from airbnb.settings.packages.django_admin_thumbnails_settings import *
 from airbnb.settings.packages.ckeditor_settings import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -28,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
@@ -40,10 +43,15 @@ INSTALLED_APPS = [
     'lists',
 
     # Third parties
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_countries',
     'ckeditor',
     # 'ckeditor_uploader',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -126,3 +134,5 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'home.CustomUser'
+
+# LOGIN_REDIRECT_URL = reverse_lazy('home:index')

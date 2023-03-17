@@ -16,19 +16,34 @@ class Chat(TimeBasedModel):
     def display_created_date(self):
         return date(self.created_at)
 
+    @property
+    def all_participants(self):
+        usernames = [user.username for user in self.participants.all()]
+
+        return ', '.join(usernames)
+
+    @property
+    def count_messages(self):
+        return self.messages.count()
+
+    @property
+    def count_participants(self):
+        return self.participants.count()
+
     def __str__(self):
-        return self.display_created_date
+        return f'{self.all_participants} - {self.display_created_date}'
 
 
 class Message(TimeBasedModel):
     content = models.TextField()
     user = auto_prefetch.ForeignKey(
-        "home.CustomUser",
+        'home.CustomUser',
         on_delete=models.CASCADE
     )
     chats = auto_prefetch.ForeignKey(
         "Chat",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='messages'
     )
 
     @property

@@ -13,6 +13,6 @@ class ChatAdmin(admin.ModelAdmin):
 class MessageAdmin(admin.ModelAdmin):
     list_display = ['user', 'chat_preview', 'created_at', 'updated_at']
     autocomplete_fields = ['user']
-    list_select_related = ['user'],
+    list_select_related = ['user']
     search_fields = ['user__username', 'user__email', 'content']
     date_hierarchy = 'created_at'

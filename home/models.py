@@ -56,6 +56,8 @@ class CustomUser(TimeBasedModel, AbstractUser):
     class Meta(auto_prefetch.Model.Meta):
         ordering = ["first_name", "last_name"]
         verbose_name = "user"
+        verbose_name = _('Custom User')
+        verbose_name_plural = _('Custom Users')
 
     def __str__(self):
         return self.get_full_name() or self.email
@@ -67,7 +69,3 @@ class CustomUser(TimeBasedModel, AbstractUser):
             return self.avatar.url
 
         return f"{settings.STATIC_URL}images/avatar/placeholder.jpg"
-
-    class Meta:
-        verbose_name = _('Custom User')
-        verbose_name_plural = _('Custom Users')

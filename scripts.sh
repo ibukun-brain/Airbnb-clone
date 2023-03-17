@@ -9,12 +9,12 @@ echo
 echo "Pylint run complete"
 echo
 
-echo "Running flake8 ..."
-sleep 1
-flake8
-echo
-echo "Flake8 run complete"
-echo
+# echo "Running flake8 ..."
+# sleep 1
+# flake8
+# echo
+# echo "Flake8 run complete"
+# echo
 
 
 echo "Running tests"

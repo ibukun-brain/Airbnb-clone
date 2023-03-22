@@ -25,7 +25,7 @@ class NamedTimeBasedModel(TimeBasedModel):
         ordering = ["name", "created_at"]
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def title(self):
         """alias for `name` field"""
@@ -41,7 +41,7 @@ class CategoryModel(TimeBasedModel):
         abstract = True
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def save(self, *args, **kwargs):
         if not self.slug and self.name:

@@ -2,7 +2,7 @@ import random
 
 from twilio.rest import Client
 
-from aritek.utils.settings import get_app_settings, get_env_variable
+from airbnb.utils.settings import get_app_settings, get_env_variable
 
 
 def generate_verification_code(n=6):

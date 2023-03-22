@@ -48,25 +48,25 @@ class Command(BaseCommand):
         house_rules = HouseRule.objects.all()
         for pk in created_clean:
             room = Room.objects.get(pk=pk)
-            for i in range(3, random.randint(10, 30)):
-                photo, _ = RoomPhoto.objects.get_or_create(
+            for _ in range(3, random.randint(10, 30)):
+                _photo, _ = RoomPhoto.objects.get_or_create(
                     caption=seeder.faker.sentence(),
                     room=room,
                     image=f'room_photos/{random.randint(1, 31)}.jpg'
                 )
             for amenity in amenities:
                 rand_int = random.randint(0, 15)
-                if rand_int % 2 == 0:
+                if rand_int % 2 < 1:
                     room.amenities.add(amenity)
 
             for facility in facilities:
                 rand_int = random.randint(0, 15)
-                if rand_int % 2 == 0:
+                if rand_int % 2 < 1:
                     room.facilities.add(facility)
 
             for house_rule in house_rules:
                 rand_int = random.randint(0, 15)
-                if rand_int % 2 == 0:
+                if rand_int % 2 < 1:
                     room.house_rules.add(house_rule)
 
         self.stdout.write(self.style.SUCCESS(f'{number} {NAME} was created'))

@@ -9,14 +9,6 @@ class Command(BaseCommand):
 
     help = f'This command creates a test data for a {NAME} model'
 
-    def add_arguments(self, parser):
-        parser.add_argument(
-            '--number',
-            type=int,
-            default=1,
-            help=f'How many {NAME} do you want to create'
-        )
-
     def handle(self, *args, **options):
         amenities = [
             'Air conditioning', 'Alarm Clock', 'Balcony',
@@ -35,7 +27,7 @@ class Command(BaseCommand):
             'Toilet', 'Towels', 'TV'
         ]
         for a in amenities:
-            amenity, created = Amenity.objects.get_or_create(
+            _amenity, _ = Amenity.objects.get_or_create(
                 name=a
             )
-        self.stdout.write(self.style.SUCCESS(f'{number} {NAME} was created'))
+        self.stdout.write(self.style.SUCCESS(f'{NAME} was created'))

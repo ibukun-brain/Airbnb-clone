@@ -1,7 +1,7 @@
 import random
+from datetime import datetime, timedelta
 
 from django.core.management.base import BaseCommand
-from datetime import datetime, timedelta
 
 from django_seed import Seed
 
@@ -9,7 +9,6 @@ from home.models import CustomUser
 from reservations.models import Reservation
 from rooms.models import Room
 
-from airbnb.utils.choices import ReservationStatus
 
 NAME = 'reservation'
 

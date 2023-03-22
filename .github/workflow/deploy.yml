@@ -3,7 +3,7 @@ name: Test0and Release Django Project
 on:
   push:
     branches: 
-      - '**' 
+      - '*' 
 
 
 jobs:

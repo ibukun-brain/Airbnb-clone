@@ -1,6 +1,7 @@
 import admin_thumbnails
 
 from django.contrib import admin
+
 from rooms.models import (
     Amenity, Facility, HouseRule,
     Room, RoomPhoto, RoomType
@@ -22,6 +23,7 @@ class RoomAdminPhoto(admin.ModelAdmin):
 class RoomPhotoInline(admin.TabularInline):
     model = RoomPhoto
     extra = 1
+    list_select_related = ['room']
 
 
 @admin.register(Room)
@@ -32,7 +34,8 @@ class RoomAdmin(admin.ModelAdmin):
             'Basic Info',
             {'fields': (
                 'name', 'description', 'country',
-                'city', 'address', 'price'
+                'city', 'address', 'price',
+                'room_type'
                 )}
         ),
         (
@@ -52,7 +55,6 @@ class RoomAdmin(admin.ModelAdmin):
             {'fields': ('host',)}
         ),
     )
-
     list_display = [
         'name', 'host', 'country',
         'city', 'address', 'instant_book',
@@ -72,6 +74,13 @@ class RoomAdmin(admin.ModelAdmin):
     filter_horizontal = ['amenities', 'facilities', 'house_rules']
     inlines = [RoomPhotoInline]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related(
+            'roomphotos', 'reviews',
+            'amenities', 'facilities'
+        )
+
     def count_amenities(self, obj):
         return obj.amenities.count()
 
@@ -80,6 +89,7 @@ class RoomAdmin(admin.ModelAdmin):
     def count_photos(self, obj):
         return obj.roomphotos.count()
 
+    count_photos.short_description = 'photo count'
     # def save_model(self, request, obj, form, change):
     #     obj.city = obj.city.capitalize()
     #     return super().save_model(request, obj, form, change)

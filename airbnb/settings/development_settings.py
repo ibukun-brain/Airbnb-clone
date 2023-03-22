@@ -8,23 +8,25 @@ SECRET_KEY = 'django-insecure-w$*sk^mkhnj#t0hr-\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
-DATABASES["default"] = dj_database_url.parse(
-    f"sqlite:////{BASE_DIR.joinpath(BASE_DIR.name)}.db", conn_max_age=600,
+DATABASES['default'] = dj_database_url.parse(
+    f'sqlite:////{BASE_DIR.joinpath(BASE_DIR.name)}.db', conn_max_age=600,
 )
 
 
 INSTALLED_APPS += [
-    "debug_toolbar",
+    'debug_toolbar',
+    'django_extensions',
+    'django_seed',
 ]
 
 MIDDLEWARE += [
-    "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 INTERNAL_IPS = [
-    "127.0.0.1",
+    '127.0.0.1',
 ]
 
 STATIC_URL = '/assets/'
@@ -33,9 +35,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'assets/'
 ]
 
-STATIC_ROOT = BASE_DIR / "static_root"
+STATIC_ROOT = BASE_DIR / 'static_root'
 
 
-MEDIA_URL = "/media/"
+MEDIA_URL = '/media/'
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = BASE_DIR / 'media'

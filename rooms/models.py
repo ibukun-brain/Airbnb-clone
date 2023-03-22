@@ -54,10 +54,12 @@ class Room(NamedTimeBasedModel):
     def total_rating(self):
         all_reviews = self.reviews.all()
         all_ratings = 0
-        for review in all_reviews:
-            all_ratings += review.rating_average
+        if all_reviews.count() > 0:
+            for review in all_reviews:
+                all_ratings += review.rating_average
 
-        return all_ratings / len(all_reviews)
+            return all_ratings / len(all_reviews)
+        return 0
 
     def save(self, *args, **kwargs):
         self.city = self.city.capitalize()

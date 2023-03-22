@@ -11,3 +11,7 @@ class ListAdmin(admin.ModelAdmin):
     date_hierarchy = 'created_at'
     list_filter = ['created_at', 'updated_at']
     filter_horizontal = ['rooms']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related('rooms')

@@ -1,0 +1,10 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block title %}Vacation Homes And Cond Rentals{% endblock title %}
+
+{% block body %}
+    <h3>Hello Airbnb!</h3>
+    {% for room in rooms %}
+        <p>{{room}}</a>
+    {% endfor %}
+{% endblock body %}

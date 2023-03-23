@@ -27,7 +27,7 @@ class Command(BaseCommand):
             'Toilet', 'Towels', 'TV'
         ]
         for a in amenities:
-            _amenity, _ = Amenity.objects.get_or_create(
+            _dkaamenity, _ = Amenity.objects.get_or_create(
                 name=a
             )
         self.stdout.write(self.style.SUCCESS(f'{NAME} was created'))

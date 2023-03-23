@@ -1,4 +1,6 @@
+import random
 from django.core.management.base import BaseCommand
+from django.conf import settings
 
 from django_seed import Seed
 
@@ -25,6 +27,8 @@ class Command(BaseCommand):
         seeder.add_entity(CustomUser, number, {
             'is_staff': False,
             'is_superuser': False,
+            'avatar': f'avatar/placeholder.jpg'
+            'gender': random.choice(['male', 'female'])
         })
         seeder.execute()
         self.stdout.write(self.style.SUCCESS(f'{number} {NAME}s was created'))

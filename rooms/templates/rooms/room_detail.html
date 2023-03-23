@@ -1,0 +1,26 @@
+{% extends 'partials/_base.html' %}
+{% load static %}
+{% block title %}{{room.name}}{% endblock title %}
+
+{% block body %}
+    <div>
+        <h2><b>{{room.title}}</b></h2>
+        {% if room.total_rating %}<span>{{room.total_rating}}.</span>{% endif %}
+        {% if room.reviews %}<span> {{room.reviews.count}} review{{room.reviews.count|pluralize}}</span>{% endif %}
+        {% if room.host.is_superhost %}<span>Superhost</span>{% endif %}
+        <span>{{room.address}}</span>
+    </div>
+
+    <div>
+        <h2><b>{{room.room_type}} hosted by {{room.host}}</b></h2>
+        <span>{{room.guests}} guest{{room.guests|pluralize}}.</span>
+        <span>{{room.bedrooms}} bedroom{{room.bedrooms|pluralize}}.</span>
+        <span>{{room.beds}} bed{{room.beds|pluralize}}.</span>
+        <span>{{room.baths}} bath{{room.baths|pluralize}}.</span>
+    </div>
+
+    <div>
+        <img src="{{room.host.image_url}}" style="border-radius: 50%" width="100">
+    </div>
+
+{% endblock body %}

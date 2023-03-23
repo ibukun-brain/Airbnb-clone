@@ -68,7 +68,7 @@ class RoomAdmin(admin.ModelAdmin):
         'baths', 'beds', 'bedrooms',
         'guests',
     ]
-    search_fields = ['host__username', 'host_email', 'name', 'description']
+    search_fields = ['host__username', 'host__email', 'name', 'description']
     list_select_related = ['host', 'room_type']
     autocomplete_fields = ['host', 'room_type']
     filter_horizontal = ['amenities', 'facilities', 'house_rules']

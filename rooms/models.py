@@ -1,6 +1,7 @@
 import auto_prefetch
 
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from django_countries.fields import CountryField
@@ -58,8 +59,11 @@ class Room(NamedTimeBasedModel):
             for review in all_reviews:
                 all_ratings += review.rating_average
 
-            return all_ratings / len(all_reviews)
+            return round(all_ratings / len(all_reviews), 2)
         return 0
+
+    def get_absolute_url(self):
+        return reverse("rooms:room-detail", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
         self.city = self.city.capitalize()

@@ -5,9 +5,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path("accounts/", include("allauth.urls")),
     path('admin/', admin.site.urls),
-
+    path('accounts/', include('allauth.urls')),
+    path('', include('home.urls', namespace='home')),
 ]
 
 if settings.DEBUG:
@@ -17,7 +17,7 @@ if settings.DEBUG:
                           document_root=settings.STATIC_ROOT)
 
     extrapatterns = [
-        path("__debug__/", include(debug_toolbar.urls)),
+        path('__debug__/', include(debug_toolbar.urls)),
     ]
 
     urlpatterns += extrapatterns

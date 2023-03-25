@@ -27,7 +27,7 @@ class Command(BaseCommand):
         seeder.add_entity(CustomUser, number, {
             'is_staff': False,
             'is_superuser': False,
-            'avatar': f'avatar/placeholder.jpg'
+            'avatar': f'avatar/placeholder.jpg',
             'gender': random.choice(['male', 'female'])
         })
         seeder.execute()
